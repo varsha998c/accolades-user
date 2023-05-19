@@ -6,7 +6,6 @@ function Enquiry({ modal, setModal }) {
     const [isError, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [phone, setPhone] = useState("");
-    const [mail, setMail] = useState("");
 
     //to handle name change
     const onNameChange = (event) => {
@@ -15,7 +14,7 @@ function Enquiry({ modal, setModal }) {
         setName(value);
     };
 
-    //to handle phone number change events
+    // phone
     const onPhoneChange = (e) => {
         const re = /^[0-9\b]+$/;
         if (e.target.value === "" || re.test(e.target.value)) {
@@ -25,6 +24,8 @@ function Enquiry({ modal, setModal }) {
     };
 
     // to handle email
+    const [mailError, setMailError] = useState(false);
+    const [email, setMail] = useState("");
     const onEmailChange = (e) => {
         let str = e.target.value;
         setMail(e.target.value);
@@ -33,9 +34,22 @@ function Enquiry({ modal, setModal }) {
             /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(str) &&
             str.includes(".com")
         ) {
+            setMailError(false);
             setErrorMsg("");
         } else {
+            setMailError(true);
             setErrorMsg("Enter a valid email");
+        }
+    };
+    const handleSubmit = () => {
+        setError(true);
+
+        if (name && phone && phone.length < 15 && email && !mailError) {
+            setModal(false);
+            setError(false);
+        } else {
+            setModal(true);
+            setError(true);
         }
     };
 
@@ -83,6 +97,14 @@ function Enquiry({ modal, setModal }) {
                                     onChange={onPhoneChange}
                                     value={phone}
                                 />
+                                {isError && phone.length === 0 ? (
+                                    <ErrorMsg>This field is required</ErrorMsg>
+                                ) : null}
+                                {phone.length > 15 ? (
+                                    <ErrorMsg>Enter a valid number</ErrorMsg>
+                                ) : (
+                                    ""
+                                )}
                             </InputSection>
                         </InputCover>
                         <InputCover>
@@ -92,17 +114,26 @@ function Enquiry({ modal, setModal }) {
                                     type="text"
                                     id="email"
                                     placeholder="Enter your mail address"
-                                    value={mail}
+                                    value={email}
                                     onChange={onEmailChange}
                                 />
+                                <Error
+                                    className={
+                                        (mailError ||
+                                            (isError && email === "")) &&
+                                        "active"
+                                    }
+                                >
+                                    Enter a valid email id
+                                </Error>
                             </InputSection>
                         </InputCover>
                         <InputCover>
-                            <TextArea rows="10" cols="75"></TextArea>
+                            <TextArea></TextArea>
                         </InputCover>
                         <Submit
                             onClick={() => {
-                                setModal(false);
+                                handleSubmit();
                             }}
                         >
                             Submit
@@ -163,6 +194,28 @@ const Section = styled.div`
     border-radius: 10px;
     background-color: #fff;
     box-sizing: border-box;
+    @media all and (max-width: 1280px) {
+        width: 56%;
+        max-height: 96vh;
+    }
+    @media all and (max-width: 980px) {
+        width: 70%;
+    }
+    @media all and (max-width: 768px) {
+        width: 80%;
+    }
+    @media all and (max-width: 640px) {
+        width: 90%;
+    }
+    @media all and (max-width: 480px) {
+        width: 98%;
+        height: 96vh;
+        max-height: 100vh;
+        padding: 30px;
+    }
+    @media all and (max-width: 360px) {
+        padding: 20px;
+    }
 `;
 const InputCover = styled.div`
     margin-bottom: 20px;
@@ -177,13 +230,10 @@ const InputSection = styled.div`
     border: 1px solid #d0d0d0;
     border-radius: 6px;
     margin-top: 5px;
-
     position: relative;
-
     &.color {
         border: 1px solid #0fa76f;
     }
-
     input {
         flex: 1;
         height: 100%;
@@ -202,6 +252,18 @@ const InputSection = styled.div`
         }
     }
 `;
+const Error = styled.p`
+    color: #e02b1d;
+    position: absolute;
+    bottom: -20px;
+    font-size: 12px;
+    left: 0;
+    display: none;
+    &.active {
+        display: block;
+    }
+`;
+
 const CountryCode = styled.p`
     font-family: gordita_regular;
     font-size: 14px;
@@ -248,7 +310,30 @@ const Submit = styled.div`
     }
 `;
 const TextArea = styled.textarea`
+    width: 536px;
+    height: 100px;
     border-radius: 8px;
     padding: 10px;
     border: 1px solid #4c4b4bcc;
+    @media all and (max-width: 1280px) {
+        width: 528px;
+    }
+    @media all and (max-width: 1080px) {
+        width: 470px;
+    }
+    @media all and (max-width: 980px) {
+        width: 460px;
+    }
+    @media all and (max-width: 768px) {
+        width: 434px;
+    }
+    @media all and (max-width: 640px) {
+        width: 355px;
+    }
+    @media all and (max-width: 480px) {
+        width: 295px;
+    }
+    @media all and (max-width: 360px) {
+        width: 275px;
+    }
 `;

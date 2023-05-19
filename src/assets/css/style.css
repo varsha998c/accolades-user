@@ -142,3 +142,9 @@ select::-ms-expand {
 	margin: 0 auto;
 	max-width: 1380px;
 }
+@media all and (max-width:640px){
+	.slick-slide ,.slick-active ,.slick-current {
+		/* width: 385px !important; */
+
+	}
+}

@@ -23,7 +23,7 @@ function ContactLegalForm() {
         setName(value);
     };
 
-    //to handle phone number change events
+    // phone
     const onPhoneChange = (e) => {
         const re = /^[0-9\b]+$/;
         if (e.target.value === "" || re.test(e.target.value)) {
@@ -31,6 +31,9 @@ function ContactLegalForm() {
         }
         return phone;
     };
+
+    // to handle email
+    const [mailError, setMailError] = useState(false);
 
     const onEmailChange = (e) => {
         let str = e.target.value;
@@ -40,8 +43,10 @@ function ContactLegalForm() {
             /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(str) &&
             str.includes(".com")
         ) {
+            setMailError(false);
             setErrorMsg("");
         } else {
+            setMailError(true);
             setErrorMsg("Enter a valid email");
         }
     };
@@ -49,12 +54,21 @@ function ContactLegalForm() {
     const onPlaceChange = (e) => {
         setPlace(e.target.value);
     };
+    const handleSubmit = () => {
+        setError(true);
+
+        if (name && phone && phone.length < 15 && mail && place && !mailError) {
+            setError(false);
+        } else {
+            setError(true);
+        }
+    };
 
     return (
         <>
             <Container id="legal">
                 <Pink></Pink>
-                <div className="wrapper">
+                <Div className="wrapper">
                     <BottomSection>
                         <LeftCover>
                             <Head>
@@ -152,9 +166,24 @@ function ContactLegalForm() {
                                                 onChange={onPhoneChange}
                                                 value={phone}
                                             />
+                                            {isError && phone.length === 0 ? (
+                                                <ErrorMsg>
+                                                    This field is required
+                                                </ErrorMsg>
+                                            ) : null}
+                                            {phone.length > 15 ? (
+                                                <ErrorMsg>
+                                                    Enter a valid number
+                                                </ErrorMsg>
+                                            ) : (
+                                                ""
+                                            )}
                                         </InputSection>
                                     </InputCover>
-                                    <InputCover style={{ marginBottom: 0 }}>
+                                    <InputCover
+                                        className="place"
+                                        style={{ marginBottom: 0 }}
+                                    >
                                         <Label htmlFor="place">Place*</Label>
                                         <InputSection>
                                             <input
@@ -181,27 +210,47 @@ function ContactLegalForm() {
                                                 value={mail}
                                                 onChange={onEmailChange}
                                             />
+                                            <Error
+                                                className={
+                                                    (mailError ||
+                                                        (isError &&
+                                                            mail === "")) &&
+                                                    "active"
+                                                }
+                                            >
+                                                Enter a valid email id
+                                            </Error>
                                         </InputSection>
                                     </InputCover>
                                 </LeftSection>
 
-                                <Button>Submit</Button>
+                                <Button
+                                    onClick={() => {
+                                        handleSubmit();
+                                    }}
+                                >
+                                    Submit
+                                </Button>
                             </FormCover>
                         </RightCover>
                     </BottomSection>
-                </div>
+                </Div>
             </Container>
         </>
     );
 }
 
 export default ContactLegalForm;
-
+const Div = styled.div``;
 const Container = styled.div`
     position: relative;
     background-color: #e2efef;
     padding: 180px 0 50px 0;
-    height: 100vh;
+    height: auto;
+
+    @media all and (max-width: 480px) {
+        padding-top: 90px;
+    }
 `;
 const Pink = styled.div`
     position: absolute;
@@ -212,6 +261,20 @@ const Pink = styled.div`
     background: #62dfe1;
     opacity: 0.56;
     filter: blur(200px);
+    @media all and (max-width: 980px) {
+        width: 258px;
+    }
+    @media all and (max-width: 768px) {
+        left: 200px;
+        top: 69px;
+    }
+    @media all and (max-width: 640px) {
+        left: 45px;
+        height: 395px;
+    }
+    @media all and (max-width: 480px) {
+        display: none;
+    }
 `;
 const BottomSection = styled.div`
     display: flex;
@@ -219,9 +282,17 @@ const BottomSection = styled.div`
     width: 100%;
     position: relative;
     justify-content: space-between;
+    @media all and (max-width: 980px) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 const LeftCover = styled.div`
     width: 45%;
+    @media all and (max-width: 980px) {
+        width: 100%;
+        margin-bottom: 70px;
+    }
 `;
 const Head = styled.div``;
 const Title = styled.h3`
@@ -230,6 +301,9 @@ const Title = styled.h3`
     color: #59b8b4;
     font-family: -webkit-body;
     margin-bottom: 20px;
+    @media all and (max-width: 480px) {
+        width: 100%;
+    }
 `;
 
 const Description = styled.p`
@@ -239,6 +313,9 @@ const Description = styled.p`
     max-width: 70%;
     margin-bottom: 20px;
     position: relative;
+    @media all and (max-width: 480px) {
+        width: 100%;
+    }
 `;
 
 const Bottom = styled.div``;
@@ -305,6 +382,13 @@ const RightCover = styled.div`
     border-radius: 10px;
     position: relative;
     z-index: 1;
+    @media all and (max-width: 1080px) {
+        transform: translateY(-83px);
+    }
+    @media all and (max-width: 980px) {
+        width: 100%;
+        transform: translateY(0);
+    }
 `;
 
 const LeftSection = styled.div`
@@ -312,6 +396,9 @@ const LeftSection = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 11px;
     display: grid;
+    @media all and (max-width: 1080px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 const FormTitle = styled.h3`
@@ -329,6 +416,11 @@ const Label = styled.label`
 `;
 const InputCover = styled.div`
     margin-bottom: 20px;
+    &:nth-child(3) {
+        @media all and (max-width: 1080px) {
+            margin-bottom: 20px !important;
+        }
+    }
 `;
 const InputSection = styled.span`
     display: ${({ type }) => (type === "number" ? "flex" : "block")};
@@ -339,14 +431,10 @@ const InputSection = styled.span`
     border: 1px solid #d0d0d0;
     border-radius: 6px;
     margin-top: 5px;
-    /* overflow: hidden; */
-
     position: relative;
-
     &.color {
         border: 1px solid #0fa76f;
     }
-
     input {
         flex: 1;
         height: 100%;
@@ -368,7 +456,17 @@ const InputSection = styled.span`
 const FormCover = styled.div`
     display: grid;
 `;
-
+const Error = styled.p`
+    color: #e02b1d;
+    position: absolute;
+    bottom: -20px;
+    font-size: 12px;
+    left: 0;
+    display: none;
+    &.active {
+        display: block;
+    }
+`;
 const Country = styled.span`
     display: block;
     /* width: 30px; */

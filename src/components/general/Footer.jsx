@@ -139,6 +139,18 @@ const Pink = styled.div`
     background: #62dfe1;
     opacity: 0.56;
     filter: blur(200px);
+    @media all and (max-width: 980px) {
+        width: 375px;
+    }
+    @media all and (max-width: 768px) {
+        left: 266px;
+    }
+    @media all and (max-width: 640px) {
+        left: 62px;
+    }
+    @media all and (max-width: 480px) {
+        display: none;
+    }
 `;
 const TopSection = styled.div``;
 const MainBox = styled.div``;
@@ -152,6 +164,9 @@ const LogoContainer = styled(Link)`
     display: block;
     width: 170px;
     cursor: pointer;
+    @media all and (max-width: 480px) {
+        width: 150px;
+    }
 `;
 
 const Address = styled.p`
@@ -161,6 +176,9 @@ const Address = styled.p`
     max-width: 400px;
     line-height: 1.5rem;
     color: #fff;
+    @media all and (max-width: 480px) {
+        font-size: 14px;
+    }
 `;
 
 const Title = styled.span`
@@ -169,6 +187,12 @@ const Title = styled.span`
     font-size: 18px;
     color: #fff;
     font-family: -webkit-body;
+    @media all and (max-width: 480px) {
+        font-size: 16px;
+    }
+    @media all and (max-width: 360px) {
+        margin-top: 40px;
+    }
 `;
 
 const ContactSection = styled.div``;
@@ -179,8 +203,10 @@ const Phone = styled.a`
     color: #fff;
     width: 100%;
     font-family: -webkit-body;
-
     cursor: pointer;
+    @media all and (max-width: 480px) {
+        font-size: 14px;
+    }
 `;
 const Mail = styled.a`
     font-size: 18px;
@@ -188,6 +214,9 @@ const Mail = styled.a`
     width: 100%;
     font-family: -webkit-body;
     cursor: pointer;
+    @media all and (max-width: 480px) {
+        font-size: 14px;
+    }
 `;
 const SocialMedia = styled.ul`
     display: flex;
@@ -217,10 +246,20 @@ const BottonSection = styled.div`
     font-family: -webkit-body;
     padding: 40px 0 20px;
     box-sizing: border-box;
+    @media all and (max-width: 768px) {
+        flex-direction: column-reverse;
+    }
 `;
 const Left = styled.span`
     display: block;
     color: #fff;
     font-size: 16px;
     font-family: -webkit-body;
+    @media all and (max-width: 640px) {
+        text-align: center;
+        margin-top: 40px;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 14px;
+    }
 `;

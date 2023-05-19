@@ -52,7 +52,8 @@ function About() {
                 <Pink></Pink>
                 <Section className="wrapper">
                     <AboutContainer>
-                        <div
+                        <Content
+                            className="card"
                             style={{
                                 display: "flex",
                                 flexDirection: "column",
@@ -70,7 +71,7 @@ function About() {
                                 responsibility to amend the success rate for all
                                 our specific clients.
                             </Description>
-                        </div>
+                        </Content>
                         <ImgContainer>
                             <img
                                 src={require("../../assets/images/download.jpg")}
@@ -79,7 +80,8 @@ function About() {
                         </ImgContainer>
                     </AboutContainer>
                     <Work>Our Works</Work>
-                    <div
+                    <Div
+                        className="card"
                         style={{
                             display: "grid",
                             gap: "30px",
@@ -100,7 +102,7 @@ function About() {
                                 <Paragraph>{item.description}</Paragraph>
                             </Contents>
                         ))}
-                    </div>
+                    </Div>
                 </Section>
             </Container>
         </>
@@ -108,6 +110,14 @@ function About() {
 }
 
 export default About;
+const Div = styled.div`
+    @media all and (max-width: 1080px) {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    @media all and (max-width: 640px) {
+        grid-template-columns: 1fr !important;
+    }
+`;
 const Container = styled.div`
     padding: 120px 0 40px;
     background: #edeae7;
@@ -121,17 +131,48 @@ const Pink = styled.div`
     background: #d88f46;
     opacity: 0.56;
     filter: blur(200px);
+    @media all and (max-width: 1080px) {
+        left: 261px;
+    }
+    @media all and (max-width: 769px) {
+        left: 131px;
+    }
+    @media all and (max-width: 640px) {
+        left: -110px;
+    }
+    @media all and (max-width: 480px) {
+        width: 475px;
+        height: 380px;
+    }
+    @media all and (max-width: 360px) {
+        width: 435px;
+    }
 `;
 const Section = styled.div``;
 const AboutContainer = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media all and (max-width: 1080px) {
+        flex-direction: column;
+    }
+`;
+const Content = styled.div`
+    @media all and (max-width: 980px) {
+        width: 100% !important;
+    }
 `;
 const Heading = styled.h1`
     color: #ee960a;
     font-family: -webkit-body;
     font-size: 46px;
     margin-bottom: 30px;
+    @media all and (max-width: 640px) {
+        font-size: 40px;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 36px;
+    }
 `;
 const Description = styled.p`
     width: 90%;
@@ -139,6 +180,12 @@ const Description = styled.p`
     color: #000;
     font-family: -webkit-body;
     line-height: 1.6rem;
+    @media all and (max-width: 1080px) {
+        width: 100%;
+    }
+    @media all and (max-width: 640px) {
+        font-size: 16px;
+    }
 `;
 const Contents = styled.div`
     border-radius: 8px;
@@ -155,6 +202,12 @@ const ImgContainer = styled.div`
         width: 100%;
         display: block;
     }
+    @media all and (max-width: 640px) {
+        width: 458px;
+    }
+    @media all and (max-width: 480px) {
+        width: 300px;
+    }
 `;
 const Work = styled.div`
     font-size: 36px;
@@ -162,6 +215,9 @@ const Work = styled.div`
     font-family: -webkit-body;
     color: #0ad99e;
     text-align: center;
+    @media all and (max-width: 480px) {
+        font-size: 30px;
+    }
 `;
 const ImgsContainer = styled.div`
     &:hover {
@@ -174,8 +230,14 @@ const Title = styled.h3`
     font-family: -webkit-body;
     margin-bottom: 20px;
     color: #b38214;
+    @media all and (max-width: 480px) {
+        font-size: 24px;
+    }
 `;
 const Paragraph = styled.p`
     font-size: 18px;
     font-family: -webkit-body;
+    @media all and (max-width: 480px) {
+        font-size: 14px;
+    }
 `;

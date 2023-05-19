@@ -46,7 +46,7 @@ function GallerySection() {
                 <Pink></Pink>
                 <Section className="wrapper">
                     <Work>Gallery</Work>
-                    <div
+                    <Div
                         style={{
                             display: "grid",
                             gap: "30px",
@@ -65,7 +65,7 @@ function GallerySection() {
                                 </ImgsContainer>
                             </Contents>
                         ))}
-                    </div>
+                    </Div>
                 </Section>
             </Container>
         </>
@@ -76,6 +76,10 @@ export default GallerySection;
 const Container = styled.div`
     padding: 120px 0 40px;
     background: #edeae7;
+
+    @media all and (max-width: 768px) {
+        padding-top: 60px;
+    }
 `;
 const Pink = styled.div`
     position: absolute;
@@ -86,6 +90,21 @@ const Pink = styled.div`
     background: #d87512;
     opacity: 0.56;
     filter: blur(200px);
+    @media all and (max-width: 980px) {
+        width: 379px;
+    }
+    @media all and (max-width: 768px) {
+        left: 267px;
+    }
+    @media all and (max-width: 640px) {
+        left: 106px;
+    }
+    @media all and (max-width: 480px) {
+        left: -13px;
+    }
+    @media all and (max-width: 360px) {
+        width: 335px;
+    }
 `;
 const Section = styled.div``;
 const Contents = styled.div`
@@ -100,6 +119,14 @@ const Work = styled.div`
     font-family: gordita_medium;
     color: #d87512;
     text-align: center;
+`;
+const Div = styled.div`
+    @media all and (max-width: 768px) {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    @media all and (max-width: 640px) {
+        grid-template-columns: 1fr !important;
+    }
 `;
 const ImgsContainer = styled.div`
     height: 200px;

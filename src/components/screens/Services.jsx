@@ -61,6 +61,9 @@ const Container = styled.div`
     padding: 50px 0;
     background-color: aliceblue;
     height: 80vh;
+    @media all and (max-width: 980px) {
+        height: auto;
+    }
 `;
 const Heading = styled.h2`
     font-size: 40px;
@@ -69,11 +72,21 @@ const Heading = styled.h2`
     color: #59b8b4;
     font-family: -webkit-body;
     text-transform: capitalize;
+    @media all and (max-width: 480px) {
+        font-size: 28px;
+    }
 `;
 const Section = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media all and (max-width: 980px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
 `;
 const Div = styled.div`
     width: 30%;
@@ -83,6 +96,16 @@ const Div = styled.div`
     height: 370px;
     &:hover {
         background-color: #ddd;
+    }
+    @media all and (max-width: 1280px) {
+        height: 408px;
+    }
+    @media all and (max-width: 980px) {
+        width: 100%;
+        margin-bottom: 30px;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 `;
 const ImgContainer = styled.div`
@@ -103,6 +126,9 @@ const Title = styled.h4`
 const Description = styled.p`
     text-align: center;
     font-size: 15px;
+    @media all and (max-width: 480px) {
+        font-size: 14px;
+    }
 `;
 const Button = styled.a`
     width: 80px;

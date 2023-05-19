@@ -35,7 +35,8 @@ function ServiceSection() {
                 <Pink></Pink>
                 <Section className="wrapper">
                     <Work>Services</Work>
-                    <div
+                    <Div
+                        className="service"
                         style={{
                             display: "grid",
                             gap: "30px",
@@ -63,7 +64,7 @@ function ServiceSection() {
                                 </Button>
                             </Contents>
                         ))}
-                    </div>
+                    </Div>
                 </Section>
             </Container>
         </>
@@ -71,9 +72,20 @@ function ServiceSection() {
 }
 
 export default ServiceSection;
+const Div = styled.div`
+    @media all and (max-width: 980px) {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    @media all and (max-width: 640px) {
+        grid-template-columns: 1fr !important;
+    }
+`;
 const Container = styled.div`
     padding: 120px 0 40px;
     background: #edeae7;
+    @media all and (max-width: 640px) {
+        padding-top: 70px;
+    }
 `;
 const Pink = styled.div`
     position: absolute;
@@ -84,6 +96,21 @@ const Pink = styled.div`
     background: #d87512;
     opacity: 0.56;
     filter: blur(200px);
+    @media all and (max-width: 980px) {
+        width: 379px;
+    }
+    @media all and (max-width: 768px) {
+        left: 267px;
+    }
+    @media all and (max-width: 640px) {
+        left: 106px;
+    }
+    @media all and (max-width: 480px) {
+        left: -13px;
+    }
+    @media all and (max-width: 360px) {
+        width: 335px;
+    }
 `;
 const Section = styled.div``;
 const Button = styled.button`
@@ -107,12 +134,15 @@ const Contents = styled.div`
     padding: 20px;
 `;
 
-const Work = styled.div`
+const Work = styled.h2`
     font-size: 32px;
     margin-top: 60px;
-    font-family: gordita_medium;
+    font-family: -webkit-body;
     color: #d87512;
     text-align: center;
+    @media all and (max-width: 480px) {
+        font-size: 28px;
+    }
 `;
 const ImgsContainer = styled.div``;
 const Title = styled.h3`
@@ -121,8 +151,17 @@ const Title = styled.h3`
     font-family: -webkit-body;
     margin-bottom: 20px;
     color: #b38436;
+    @media all and (max-width: 640px) {
+        font-size: 23px;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 20px;
+    }
 `;
 const Paragraph = styled.p`
     font-size: 18px;
     font-family: -webkit-body;
+    @media all and (max-width: 640px) {
+        font-size: 16px;
+    }
 `;

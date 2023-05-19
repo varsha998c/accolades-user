@@ -60,6 +60,20 @@ const Pink = styled.div`
     background: #c471ed;
     opacity: 0.56;
     filter: blur(200px);
+    @media all and (max-width: 980px) {
+        width: 375px;
+    }
+    @media all and (max-width: 768px) {
+        left: 268px;
+        top: 69px;
+    }
+    @media all and (max-width: 640px) {
+        left: 45px;
+        height: 395px;
+    }
+    @media all and (max-width: 480px) {
+        display: none;
+    }
 `;
 const Section = styled.div`
     display: flex;
@@ -68,9 +82,15 @@ const Section = styled.div`
 const Div = styled.div`
     display: flex;
     justify-content: space-between;
+    @media all and (max-width: 980px) {
+        flex-direction: column;
+    }
 `;
 const Left = styled.div`
     width: 50%;
+    @media all and (max-width: 980px) {
+        width: 100%;
+    }
 `;
 const Title = styled.h3`
     font-size: 36px;
@@ -78,6 +98,15 @@ const Title = styled.h3`
     color: #59b8b4;
     font-family: -webkit-body;
     margin-bottom: 20px;
+    @media all and (max-width: 1280px) {
+        width: 80%;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 28px;
+    }
+    @media all and (max-width: 360px) {
+        font-size: 25px;
+    }
 `;
 const Description = styled.p`
     width: 80%;
@@ -85,6 +114,13 @@ const Description = styled.p`
     color: #111b1a;
     margin-bottom: 40px;
     font-family: -webkit-body;
+    @media all and (max-width: 1280px) {
+        width: 90%;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 16px;
+        width: 100%;
+    }
 `;
 const Button = styled(Link)`
     padding: 10px 20px;
@@ -99,11 +135,18 @@ const Button = styled(Link)`
 `;
 const Right = styled.div`
     width: 50%;
+    @media all and (max-width: 980px) {
+        width: 100%;
+    }
 `;
 const ImgContainer = styled.div`
     width: 85%;
+    margin: 0 auto;
     img {
         width: 100%;
         display: block;
+    }
+    @media all and (max-width: 480px) {
+        width: 100%;
     }
 `;

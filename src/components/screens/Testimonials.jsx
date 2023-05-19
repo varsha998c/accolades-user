@@ -9,7 +9,7 @@ export default function Testimonials() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 1,
     };
     return (
@@ -21,7 +21,7 @@ export default function Testimonials() {
                     by the readable content of a page when looking at its
                     layout.The point of lorem ipsum
                 </Details>
-                <div>
+                <BottomSection>
                     {" "}
                     <Slider {...settings}>
                         <Single>
@@ -86,7 +86,7 @@ export default function Testimonials() {
                             </Right>
                         </Single>
                     </Slider>
-                </div>
+                </BottomSection>
             </Section>
         </TestimonialSection>
     );
@@ -94,7 +94,10 @@ export default function Testimonials() {
 
 const TestimonialSection = styled.div`
     padding: 50px 0;
-    height: 90vh;
+    height: auto;
+    @media all and (max-width: 1280px) {
+        height: auto;
+    }
 `;
 const Section = styled.div`
     width: 80%;
@@ -106,6 +109,12 @@ const Heading = styled.h2`
     margin-bottom: 40px;
     color: #59b8b4;
     font-family: -webkit-body;
+    @media all and (max-width: 1080px) {
+        font-size: 36px;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 28px;
+    }
 `;
 const Details = styled.p`
     color: #000;
@@ -115,14 +124,27 @@ const Details = styled.p`
     margin: 0 auto;
     text-align: center;
     margin-bottom: 40px;
+    @media all and (max-width: 1080px) {
+        width: 80%;
+    }
+    @media all and (max-width: 480px) {
+        width: 100%;
+        font-size: 16px;
+    }
 `;
-
+const BottomSection = styled.div`
+    width: 95% !important;
+    margin: 30px auto 0;
+`;
 const Single = styled.div`
     width: 100%;
 `;
 const Image = styled.div`
     width: 25%;
     margin: 0 auto;
+    @media all and (max-width: 480px) {
+        width: 50%;
+    }
 `;
 const Imgs = styled.img`
     width: 100%;
@@ -132,6 +154,9 @@ const Right = styled.div`
     margin-left: 3%;
     width: 70%;
     margin: 0 auto;
+    @media all and (max-width: 480px) {
+        width: 100%;
+    }
 `;
 const SubHeading = styled.h3`
     font-size: 30px;
@@ -140,6 +165,10 @@ const SubHeading = styled.h3`
     margin-bottom: 40px;
     color: #195454;
     font-family: -webkit-body;
+    @media all and (max-width: 480px) {
+        font-size: 24px;
+        margin-top: 40px;
+    }
 `;
 const Paragraph = styled.p`
     font-size: 18px;
@@ -150,4 +179,10 @@ const Paragraph = styled.p`
     margin: 0 auto;
     text-align: center;
     font-family: -webkit-body;
+    @media all and (max-width: 1080px) {
+        width: 90%;
+    }
+    @media all and (max-width: 480px) {
+        font-size: 16px;
+    }
 `;
